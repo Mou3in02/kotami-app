@@ -1,0 +1,13 @@
+.toast-block{
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: 250px;
+    border-left: 4px solid #f00;
+    padding: 20px;
+    background-color: #333;
+}
+.toast-txt{
+    color: #f00;
+    font-size: 1rem;
+}
