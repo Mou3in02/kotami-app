@@ -1,5 +1,17 @@
 .box{
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     padding: 1px;
+    animation-name: box;
+    animation-duration: 0.5s;
 }
+/*@keyframes box {*/
+/*    from {*/
+/*        height: 0;*/
+/*        width: 0;*/
+/*    }*/
+/*    to {*/
+/*        width: 80px;*/
+/*        height: 80px;*/
+/*    }*/
+/*}*/

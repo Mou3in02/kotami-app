@@ -15,10 +15,7 @@ const Home = () => {
     const gridBlock = useRef(null)
     const [invalidInput, setInvalidInput] = useState(false)
 
-    const onFocusInput = () => {
-        inputRef.current.style.borderColor = '#3191F5'
-        inputRef.current.value = ''
-    }
+
     const getRBG = (input) => {
         if (input < 0) {
             let green = Math.floor((input * -1) * 255 / 100)
@@ -30,12 +27,10 @@ const Home = () => {
     const onClickSubmit = () => {
         let inputValue = inputRef.current.value
         setInvalidInput(false)
-        if (!inputValue || isEmpty(inputValue) || isEmpty(inputValue.trim()) || !isNumeric(inputValue.trim()) || !isInt(inputValue.trim(), {
-            min: -100,
-            max: 100
-        })) {
+        if (!inputValue || isEmpty(inputValue) || isEmpty(inputValue.trim()) || !isNumeric(inputValue.trim()) || !isInt(inputValue.trim(), {min: -100, max: 100})) {
             inputRef.current.style.borderColor = '#f00'
             setInvalidInput(true)
+            inputRef.current.value = ''
         } else {
             inputRef.current.style.borderColor = '#0f0'
             let newBoxes = [...boxes]
@@ -47,14 +42,14 @@ const Home = () => {
         }
     }
     const onClickDownload = () => {
-        html2canvas(gridBlock.current)
+        html2canvas(gridBlock.current,{})
             .then((canvas) => {
                 canvas.style.display = 'none'
                 document.body.appendChild(canvas)
                 return canvas
             })
             .then((canvas) => {
-                const image = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
+                const image = canvas.toDataURL('image/png')
                 const downloadLink = document.createElement('a')
                 downloadLink.setAttribute('download', 'grid.png')
                 downloadLink.setAttribute('href', image)
@@ -70,7 +65,7 @@ const Home = () => {
         <div className={'app'}>
             {invalidInput && <Toast/>}
             <div className={'add-block'}>
-                <input className={'inputX'} ref={inputRef} onFocus={onFocusInput} placeholder={'-100 ... 100'} maxLength={4}/>
+                <input className={'inputX'} ref={inputRef} placeholder={'-100 ... 100'} maxLength={4} />
                 <button className={'submitBtn'} onClick={onClickSubmit}>Add</button>
                 <button className={'downloadBtn'} onClick={onClickDownload}>Download</button>
             </div>

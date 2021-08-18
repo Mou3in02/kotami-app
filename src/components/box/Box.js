@@ -5,8 +5,8 @@ import './Box.css'
 const Box = (props) => {
     return (
         <div className={'box'}>
-            <svg width={'100'} height={'100'}>
-                <rect height={'100'} width={'100'} fill={props.color} />
+            <svg width={'80'} height={'80'}>
+                <rect height={'80'} width={'80'} fill={props.color} />
             </svg>
         </div>
     )
